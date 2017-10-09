@@ -1,0 +1,9 @@
+import Layout from "../components/Layout";
+
+export default props => (
+  <Layout>
+    <div>
+      <h1>About Page</h1>
+    </div>
+  </Layout>
+);

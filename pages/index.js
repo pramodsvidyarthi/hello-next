@@ -1,5 +1,8 @@
-export default (props) => (
-<div>
-  <h1>Hello Next.js</h1>
-</div>
-)
+import Link from "next/link";
+import Layout from '../components/Layout';
+
+export default props => (
+  <Layout>
+    <h1>Hello Next.js</h1>
+  </Layout>
+);
