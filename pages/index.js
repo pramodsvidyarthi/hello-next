@@ -23,7 +23,7 @@ export default class Index extends React.Component {
         <ul>
           {this.props.shows.map(({ show }) => (
             <li key={show.id}>
-              <Link as={`/p/${show.id}`} href={`/post?id={show.id}`}>
+              <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
                 <a>{show.name}</a>
               </Link>
             </li>
