@@ -1,6 +1,14 @@
-import Link from "next/link";
-import fetch from "isomorphic-unfetch";
-import Layout from "../components/Layout";
+import Link from 'next/link';
+import fetch from 'isomorphic-unfetch';
+import Layout from '../components/Layout';
+
+const ListItem = ({ show }) => (
+  <li key={show.id}>
+    <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
+      <a>{show.name}</a>
+    </Link>
+  </li>
+);
 
 export const Greet = props => (
   <Layout>
@@ -10,30 +18,22 @@ export const Greet = props => (
 
 export default class Index extends React.Component {
   static getInitialProps = async () => {
-    const res = await fetch("https://api.tvmaze.com/search/shows?q=batman");
+    const res = await fetch('https://api.tvmaze.com/search/shows?q=batman');
     const data = await res.json();
 
     return { shows: data };
   };
-// styled jsx has no effect for elements inside of child.
-// or use global prop in style component.
+  // styled jsx has no effect for elements inside of child.
+  // or use global prop in style component.
   render() {
     return (
       <div>
         <h1>Batman TV shows</h1>
-        <ul>
-          {this.props.shows.map(({ show }) => (
-            <li key={show.id}>
-              <Link as={`/p/${show.id}`} href={`/post?id=${show.id}`}>
-                <a>{show.name}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
-        <style jsx>{`
+        <ul>{this.props.shows.map(({ show }) => <ListItem key={show.id} show={show} />)}</ul>
+        <style jsx global>{`
           h1,
           a {
-            font-family: "Arial";
+            font-family: 'Arial';
           }
 
           ul {
